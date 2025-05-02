@@ -1,0 +1,13 @@
+services:
+  face-encoding:
+    image: veriffdocker/face-encoding-test-task
+    container_name: face-encoding
+    restart: always
+    ports:
+      - "8000:8000"
+    networks:
+      - veriff-network
+
+networks:
+  veriff-network:
+    driver: bridge
