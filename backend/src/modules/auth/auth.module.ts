@@ -12,7 +12,7 @@ import { AuthGuard } from './guards/auth.guard';
     JwtModule.registerAsync({
       useFactory: () => {
         return {
-          secretOrPrivateKey: environment.JWT.SECRET,
+          secret: environment.JWT.SECRET,
           signOptions: {
             expiresIn: environment.JWT.TTL,
           },
