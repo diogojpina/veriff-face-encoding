@@ -1,12 +1,13 @@
 import {
   Controller,
+  Get,
   Param,
   Post,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
-import { User } from '@prisma/client';
+import { FaceEncodingSession, User } from '@prisma/client';
 import { CurrentUser } from 'src/common';
 import { FaceEncodingService } from '../services/face.encoding.service';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -18,9 +19,25 @@ export class FaceEncodingController {
     private readonly faceEncodingService: FaceEncodingService,
   ) {}
 
+  @Get('')
+  async listSessions(
+    @Param('id') id,
+    @CurrentUser() user,
+  ): Promise<FaceEncodingSession[]> {
+    return await this.faceEncodingService.listSessions(user);
+  }
+
+  @Get('/:id')
+  async getSession(
+    @Param('id') id,
+    @CurrentUser() user,
+  ): Promise<FaceEncodingSession> {
+    return await this.faceEncodingService.getSession(id, user);
+  }
+
   @Post()
-  startSession(@CurrentUser() user: User) {
-    return this.faceEncodingService.startSession(user);
+  async startSession(@CurrentUser() user: User) {
+    return await this.faceEncodingService.startSession(user);
   }
 
   @Post('/uploadImage/:id')

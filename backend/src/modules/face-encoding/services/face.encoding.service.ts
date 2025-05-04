@@ -15,6 +15,14 @@ export class FaceEncodingService {
     private readonly encoderService: EncoderService,
   ) {}
 
+  public async listSessions(user: User): Promise<FaceEncodingSession[]> {
+    const sessions = await this.prisma.faceEncodingSession.findMany({
+      where: { user: { id: user.id } },
+    });
+
+    return sessions;
+  }
+
   public async getSession(
     id: string,
     user: User,
