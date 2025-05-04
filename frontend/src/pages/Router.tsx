@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import NotFound from "./NotFound";
-import AuthLoginPage from "./auth/login;page";
+import AuthLoginPage from "./auth/login.page";
 import FaceEncodingListPage from "./face-encoding/list/face.encoding.list.page";
 
 const Router = () => {

@@ -13,4 +13,19 @@ export class FaceEncodingService {
 
     return data;
   }
+
+  public static async createSession(): Promise<FaceEncodingSession> {
+    const token = UserStorage.getToken();
+    const { data } = await api.post<FaceEncodingSession>(
+      `/face-encoding`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return data;
+  }
 }

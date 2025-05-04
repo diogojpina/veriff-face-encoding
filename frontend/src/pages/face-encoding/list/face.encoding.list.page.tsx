@@ -4,9 +4,13 @@ import { FaceEncodingService } from "../../../services/face-encoding/face.encodi
 import DataTable from "../../../components/dataTable/DataTable";
 import { FaceEncodingSession } from "../../../entities";
 import { Link } from "react-router-dom";
-import { BsEye, BsPencil } from "react-icons/bs";
+import { BsEye, BsPlus } from "react-icons/bs";
+import { Button, useToast } from "@chakra-ui/react";
+import Loader from "../../../components/Loader/Loader";
 
 export default function FaceEncodingListPage() {
+  const toast = useToast();
+
   const [loading, setLoading] = useState(false);
   const [sessions, setSessions] = useState<FaceEncodingSession[]>([]);
 
@@ -20,6 +24,27 @@ export default function FaceEncodingListPage() {
       .then((sessions) => {
         console.log(sessions);
         setSessions(sessions);
+      })
+      .finally(() => setLoading(false));
+  };
+
+  const addSession = () => {
+    setLoading(true);
+    FaceEncodingService.createSession()
+      .then((session) => {
+        setSessions([...sessions, session]);
+        toast({
+          title: "Success",
+          description: "Session created succcessfully.",
+          status: "success",
+        });
+      })
+      .catch(() => {
+        toast({
+          title: "Error",
+          description: "Error to create a new session.",
+          status: "error",
+        });
       })
       .finally(() => setLoading(false));
   };
@@ -38,11 +63,8 @@ export default function FaceEncodingListPage() {
       renderCell: (row: any) => {
         return (
           <>
-            <Link to={`/face-encoding/summary/${row.id}`}>
-              <BsEye />
-            </Link>
             <Link to={`/face-encoding/${row.id}`}>
-              <BsPencil />
+              <BsEye />
             </Link>
           </>
         );
@@ -52,6 +74,10 @@ export default function FaceEncodingListPage() {
 
   return (
     <Layout>
+      {loading && <Loader />}
+      <Button onClick={addSession}>
+        <BsPlus />
+      </Button>
       <DataTable
         rows={sessions}
         columns={columns}
