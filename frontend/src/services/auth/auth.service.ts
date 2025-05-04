@@ -9,7 +9,6 @@ export class AuthService {
   }): Promise<LoginReturn> {
     const { data } = await api.post<LoginReturn>(`/auth/login`, loginData);
 
-    console.log("data", data);
     UserStorage.setToken(data.access_token);
 
     return data;
