@@ -6,7 +6,17 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const config = new DocumentBuilder().setTitle('Veriff API').build();
+  const config = new DocumentBuilder()
+    .setTitle('Veriff API')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      name: 'JWT',
+      description: 'Enter JWT token',
+      in: 'header',
+    })
+    .build();
   const documentFactory = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, documentFactory, {
     jsonDocumentUrl: 'docs/json',
