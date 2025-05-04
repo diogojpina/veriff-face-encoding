@@ -72,7 +72,15 @@ export class FaceEncodingService {
       encode: imageEncoded,
       status: FaceEncodingStatus.COMPLETED,
     };
+
     session.encodings.push(encoding);
+
+    await this.prisma.faceEncodingSession.update({
+      where: { id: session.id },
+      data: {
+        encodings: session.encodings,
+      },
+    });
 
     return encoding;
   }
