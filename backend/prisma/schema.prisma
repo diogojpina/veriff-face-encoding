@@ -19,4 +19,41 @@ model User {
   email    String @unique
   name     String
   password String
+
+  faceEncodings FaceEncodingSession[]
+}
+
+model FaceEncodingSession {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @map("user_id") @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+
+  status FaceEncodingSessionStatus
+
+  encodings FaceEncoding[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("face_endoding_session")
+}
+
+type FaceEncoding {
+  file   String
+  encode Float[]
+  status FaceEncodingStatus
+}
+
+enum FaceEncodingSessionStatus {
+  PENDING   @map("pending")
+  COMPLETED @map("completed")
+
+  @@map("face_encoding_session_status")
+}
+
+enum FaceEncodingStatus {
+  PENDING   @map("pending")
+  COMPLETED @map("completed")
+
+  @@map("face_encoding_status")
 }
