@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  ::-webkit-scrollbar {
+    width: 0.75rem;
+    background: var(--color-quinary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-senary);
+  }
+
+  .text-tiny {
+    font-size: 0.75rem !important;
+  }
+
+  .text-small {
+    font-size: 1rem !important;
+  }
+
+  .text-big {
+    font-size: 1.75em !important;
+  }
+
+  .text-huge {
+    font-size: 2.25rem !important;
+  }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+}
+
+ul, ol {
+  list-style-position: inside;
+}
+
+.chatbox-test {
+  ::-webkit-scrollbar {
+    width: 0.75rem !important;
+    background: var(--color-quinary) !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-septenary) !important;
+    cursor: pointer !important;
+  }
+}

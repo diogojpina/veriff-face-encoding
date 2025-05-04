@@ -1,0 +1,13 @@
+.chakra-data-table {
+  thead tr, th {
+    background-color: #fff !important;
+  }
+
+  tr:nth-child(odd) {
+    background-color: rgba(231,236,255,0.300) !important;
+  }
+
+  td {
+    line-height: 52px !important;
+  }
+}
