@@ -23,6 +23,12 @@
       ],
       "@/prisma/*": [
         "libs/prisma/src/*"
+      ],
+      "@app/encoder": [
+        "libs/encoder/src"
+      ],
+      "@app/encoder/*": [
+        "libs/encoder/src/*"
       ]
     }
   }

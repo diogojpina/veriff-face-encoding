@@ -12,6 +12,8 @@
   },
   "moduleNameMapper": {
     "@/prisma": "<rootDir>/../libs/prisma/src",
-    "@/prisma/(.*)": "<rootDir>/../libs/prisma/src/$1"
+    "@/prisma/(.*)": "<rootDir>/../libs/prisma/src/$1",
+    "@app/encoder": "<rootDir>/../libs/encoder/src",
+    "@app/encoder/(.*)": "<rootDir>/../libs/encoder/src/$1"
   }
 }

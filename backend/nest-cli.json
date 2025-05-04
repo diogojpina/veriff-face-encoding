@@ -7,6 +7,15 @@
     "webpack": true
   },
   "projects": {
+    "encoder": {
+      "type": "library",
+      "root": "libs/encoder",
+      "entryFile": "index",
+      "sourceRoot": "libs/encoder/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/encoder/tsconfig.lib.json"
+      }
+    },
     "prisma": {
       "type": "library",
       "root": "libs/prisma",
