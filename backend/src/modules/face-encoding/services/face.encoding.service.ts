@@ -2,6 +2,7 @@ import { PrismaService } from '@/prisma';
 import { EncoderService } from '@app/encoder';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import {
+  FaceEncoding,
   FaceEncodingSession,
   FaceEncodingSessionStatus,
   FaceEncodingStatus,
@@ -27,7 +28,7 @@ export class FaceEncodingService {
     id: string,
     user: User,
   ): Promise<FaceEncodingSession> {
-    const session = await this.prisma.faceEncodingSession.findFirst({
+    const session = await this.prisma.faceEncodingSession.findUnique({
       where: { id },
     });
 
@@ -58,7 +59,7 @@ export class FaceEncodingService {
     id: string,
     file: Express.Multer.File,
     user: User,
-  ): Promise<any> {
+  ): Promise<FaceEncoding> {
     const session = await this.getSession(id, user);
 
     this.validateMaxImages(session);
@@ -67,7 +68,7 @@ export class FaceEncodingService {
 
     this.validateMaxImages(session);
 
-    const encoding = {
+    const encoding: FaceEncoding = {
       file: file.originalname,
       encode: imageEncoded,
       status: FaceEncodingStatus.COMPLETED,
