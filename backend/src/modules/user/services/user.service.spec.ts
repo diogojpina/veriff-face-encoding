@@ -1,11 +1,8 @@
-import { MockFunctionMetadata, ModuleMocker } from 'jest-mock';
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from '@/prisma';
 import { User } from '@prisma/client';
 import { UserService } from './user.service';
 import { CreateUserDto } from '../dtos/create.user.dto';
-
-const moduleMocker = new ModuleMocker(global);
 
 const user: User = {
   id: '6814da8c52536908b84bdb69',
