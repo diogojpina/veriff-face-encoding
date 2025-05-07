@@ -31,14 +31,13 @@ describe('UserController', () => {
   });
 
   describe('create', () => {
-    it('should create an expense', async () => {
+    it('should create an user', async () => {
       const dto = new CreateUserDto();
       dto.email = user.email;
       dto.name = user.name;
       dto.password = '123456';
 
-      const expense = await controller.create(dto);
-      expect(expense).toBe(user);
+      expect(await controller.create(dto)).toBe(user);
     });
   });
 });
