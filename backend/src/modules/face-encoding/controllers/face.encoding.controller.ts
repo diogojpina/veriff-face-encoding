@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { FaceEncodingSession, User } from '@prisma/client';
-import { CurrentUser } from 'src/common';
+import { CurrentUser } from '../../../common';
 import { FaceEncodingService } from '../services/face.encoding.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 
@@ -20,10 +20,7 @@ export class FaceEncodingController {
   ) {}
 
   @Get('')
-  async listSessions(
-    @Param('id') id,
-    @CurrentUser() user,
-  ): Promise<FaceEncodingSession[]> {
+  async listSessions(@CurrentUser() user): Promise<FaceEncodingSession[]> {
     return await this.faceEncodingService.listSessions(user);
   }
 
@@ -47,7 +44,6 @@ export class FaceEncodingController {
     @UploadedFile() file: Express.Multer.File,
     @CurrentUser() user: User,
   ) {
-    console.log(file);
     return await this.faceEncodingService.uploadImage(id, file, user);
   }
 }
