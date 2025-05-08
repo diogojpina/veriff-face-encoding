@@ -1,11 +1,4 @@
-import { Link as ReactRouterLink } from "react-router-dom";
-import {
-  Container,
-  Flex,
-  HStack,
-  Show,
-  Link as ChakraLink,
-} from "@chakra-ui/react";
+import { Container, Flex, HStack } from "@chakra-ui/react";
 
 import theme from "../../Themes";
 

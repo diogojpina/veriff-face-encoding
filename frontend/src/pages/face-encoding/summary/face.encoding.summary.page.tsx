@@ -7,7 +7,7 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaceEncodingService } from "../../../services/face-encoding/face.encoding.service";
 import { FaceEncodingSession } from "../../../entities";
