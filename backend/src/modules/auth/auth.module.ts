@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UserModule } from '../user/user.module';
 import { JwtModule } from '@nestjs/jwt';
-import { environment } from 'src/config';
+import { environment } from '../../config';
 import { AuthController } from './controllers/auth.controller';
 import { AuthService } from './services/auth.service';
 import { APP_GUARD } from '@nestjs/core';
@@ -12,6 +12,7 @@ import { AuthGuard } from './guards/auth.guard';
     JwtModule.registerAsync({
       useFactory: () => {
         return {
+          global: true,
           secret: environment.JWT.SECRET,
           signOptions: {
             expiresIn: environment.JWT.TTL,

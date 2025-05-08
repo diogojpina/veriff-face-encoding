@@ -1,10 +1,9 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { JsonWebTokenError, JwtService } from '@nestjs/jwt';
+import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
-import { Observable } from 'rxjs';
-import { IS_PRIVATE_PUBLIC, IS_PUBLIC } from 'src/common';
-import { environment } from 'src/config';
+import { IS_PRIVATE_PUBLIC, IS_PUBLIC } from '../../../common';
+import { environment } from '../../../config';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
